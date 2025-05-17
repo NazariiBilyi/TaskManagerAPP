@@ -9,7 +9,7 @@ import invariant from "tiny-invariant";
 import {draggable, dropTargetForElements} from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
 import {combine} from "@atlaskit/pragmatic-drag-and-drop/combine";
 
-const Column: React.FC<IColumnProps> = ({ column, onDelete, onDeleteTask, onToggleTaskSelect, setColumns, columns, onEditTask }) => {
+const Column: React.FC<IColumnProps> = ({ column, onDelete, onDeleteTask, onToggleTaskSelect, setColumns, columns, onEditTask, searchText }) => {
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -83,6 +83,7 @@ const Column: React.FC<IColumnProps> = ({ column, onDelete, onDeleteTask, onTogg
                         columnId={column.id}
                         onToggleStatus={handleToggleTaskStatus}
                         onEditTask={onEditTask}
+                        searchText={searchText}
                         onDelete={(taskId) => onDeleteTask(column.id, taskId)}
                         onToggleSelect={(taskId) => onToggleTaskSelect(column.id, taskId)}
                     />

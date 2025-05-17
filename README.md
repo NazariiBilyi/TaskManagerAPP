@@ -23,7 +23,14 @@ A simple and intuitive task manager built with **React** and **TypeScript**, fea
 
 ## 🚀 Getting Started
 
-### To run the app please use command 
+### 1.Install dependencies
+
+```bash
+npm install
+```
+
+### 2. To run the app please use command 
 
 ```bash
 npm run dev
+```

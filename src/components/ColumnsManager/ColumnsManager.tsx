@@ -13,7 +13,7 @@ import { reorder } from "@atlaskit/pragmatic-drag-and-drop/reorder";
 import {extractClosestEdge} from "@atlaskit/pragmatic-drag-and-drop-hitbox/closest-edge";
 
 const ColumnsManager = () => {
-    const [columns, setColumns] = useState<IColumn[]>();
+    const [columns, setColumns] = useState<IColumn[]>([]);
 
     const [dialogType, setDialogType] = useState<string>('');
     const [searchText, setSearchText] = useState<string>('')
@@ -22,9 +22,9 @@ const ColumnsManager = () => {
 
     useEffect(() => {
         const savedColumns = localStorage.getItem('columns');
-        if (savedColumns) {
+        if (savedColumns !== 'undefined') {
             try {
-                setColumns(JSON.parse(savedColumns));
+                setColumns(JSON.parse(savedColumns as string));
             } catch (error) {
                 console.error('Failed to load columns from localStorage', error);
             }
@@ -415,6 +415,7 @@ const ColumnsManager = () => {
                         onDeleteTask={handleDeleteTask}
                         onToggleTaskSelect={handleToggleTaskSelect}
                         onEditTask={onEditTask}
+                        searchText={searchText}
                     />
                 ))}
             </div>

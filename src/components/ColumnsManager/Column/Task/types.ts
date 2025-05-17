@@ -13,5 +13,6 @@ export interface ITaskProps {
     onToggleStatus: (id: string) => void,
     onEditTask: (task: ITask, columnId: string) => void,
     index: number,
-    columnId: string
+    columnId: string,
+    searchText: string,
 }

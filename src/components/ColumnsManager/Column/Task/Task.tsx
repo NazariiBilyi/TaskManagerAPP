@@ -12,7 +12,7 @@ import {
 import DropIndicator from "../../../DropIndicator/DropIndicator.tsx";
 import type {Edge} from "@atlaskit/pragmatic-drag-and-drop-hitbox/types";
 
-const Task: React.FC<ITaskProps> = ({ task, onDelete, onToggleSelect, onToggleStatus, onEditTask, columnId }) => {
+const Task: React.FC<ITaskProps> = ({ task, onDelete, onToggleSelect, onToggleStatus, onEditTask, columnId, searchText }) => {
 
     const ref = useRef<HTMLDivElement>(null);
 
@@ -56,13 +56,24 @@ const Task: React.FC<ITaskProps> = ({ task, onDelete, onToggleSelect, onToggleSt
                 canDrop: ({ source }) => {
                     return source.data.type === "task" || source.data.type === "column";
                 },
-                onDrop: ({source}) => {
+                onDrop: () => {
                     setClosestEdge(null);
                     ref?.current?.classList.remove('task-hover');
                 }
             })
         );
     }, [task.id]);
+
+    const getHighlightedText = () => {
+        if (!searchText) return task.title;
+
+        const regex = new RegExp(`(${searchText})`, 'gi');
+        const parts = task.title.split(regex);
+
+        return parts.map((part, i) =>
+            regex.test(part) ? <div className='highlight-text' key={i}>{part}</div> : part
+        );
+    };
 
     return (
         <div className={`task ${task.status === 'done' ? 'task-done' : ''}`} data-task-id={task.id} ref={ref}>
@@ -72,7 +83,7 @@ const Task: React.FC<ITaskProps> = ({ task, onDelete, onToggleSelect, onToggleSt
                     checked={task.selected}
                     onChange={() => onToggleSelect(task.id)}
                 />
-                <span className="task-title">{task.title}</span>
+                <span className="task-title">{getHighlightedText()}</span>
                 <button className="task-edit" onClick={() => onEditTask(task, columnId)}>Edit</button>
                 <button className="task-delete" onClick={() => onDelete(task.id)}>×</button>
             </div>

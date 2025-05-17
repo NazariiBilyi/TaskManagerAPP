@@ -9,4 +9,5 @@ export interface IColumnProps {
     onEditTask: (task: ITask, columnId: string) => void,
     setColumns: (columns: IColumn[]) => void,
     columns: IColumn[],
+    searchText: string
 }

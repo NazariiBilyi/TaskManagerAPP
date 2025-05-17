@@ -26,6 +26,7 @@
 .task-title {
     flex-grow: 1;
     margin-left: 8px;
+    display: flex;
 }
 
 .task-delete {
@@ -111,6 +112,12 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     width: 60%;
+}
+
+.highlight-text {
+    background-color: #ccc;
+    padding: 0 2px;
+    border-radius: 2px;
 }
 
 @keyframes dropIn {

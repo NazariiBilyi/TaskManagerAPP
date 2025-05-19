@@ -1,6 +1,6 @@
 import InputField from "../InputField/InputField.tsx";
 import SelectField from "../SelectField/SelectField.tsx";
-import {useEffect, useState} from "react";
+import { useEffect, useState} from "react";
 import * as React from "react";
 import type {ICreateTaskFormProps} from "./types.ts";
 import './CreateTaskForm.css'

@@ -1,4 +1,4 @@
-import * as React from "react";
+import type {ChangeEventHandler} from "react";
 
 export interface IOption {
     id: string,
@@ -8,6 +8,6 @@ export interface IOption {
 export interface ISelectFiledProps {
     label: string;
     options: IOption[];
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange: ChangeEventHandler<HTMLSelectElement>;
     value: string;
 }

@@ -115,7 +115,7 @@ const ColumnsManager = () => {
         return newArr;
     };
 
-    const handleDrop = useCallback(({ source, location }) => {
+    const handleDrop = useCallback(({ source, location }: {source: any, location: any}) => {
         // Early return if there are no drop targets in the current location
         const destination = location.current.dropTargets.length;
         if (!destination) {

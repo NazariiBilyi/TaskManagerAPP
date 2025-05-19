@@ -10,6 +10,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "heroku-postbuild": "npm install && npm run build",
     "preview": "vite preview"
   },
   "dependencies": {

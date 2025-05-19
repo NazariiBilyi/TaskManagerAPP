@@ -22,7 +22,7 @@ const ColumnsManager = () => {
 
     useEffect(() => {
         const savedColumns = localStorage.getItem('columns');
-        if (savedColumns !== 'undefined') {
+        if (savedColumns) {
             try {
                 setColumns(JSON.parse(savedColumns as string));
             } catch (error) {
@@ -32,7 +32,7 @@ const ColumnsManager = () => {
     }, []);
 
     useEffect(() => {
-        localStorage.setItem('columns', JSON.stringify(columns));
+        if (columns?.length > 0) localStorage.setItem('columns', JSON.stringify(columns));
     }, [columns]);
 
     const moveTask = useCallback(
@@ -119,6 +119,10 @@ const ColumnsManager = () => {
         // Early return if there are no drop targets in the current location
         const destination = location.current.dropTargets.length;
         if (!destination) {
+            return;
+        }
+
+        if(!location.initial.dropTargets[0].data.dataType && location.current.dropTargets[0].data.type === 'task') {
             return;
         }
 
